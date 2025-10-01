@@ -21,11 +21,8 @@ def sort_characters(chardict):
     char_list = []
     for character in chardict:
         num = chardict[character]
-        print(character)
         character = {"Character":character, "Num":num}
-        print(character)
         char_list.append(character)
-    
     char_list.sort(reverse=True,key=sort_on)
     return char_list
 

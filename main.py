@@ -1,9 +1,15 @@
 #Importing functions from Stats
 from stats import get_num_words #Takes string dump and slices it to get wordcount.
-from stats import count_characters
-from stats import sort_characters
+from stats import count_characters #Takes string dump and creates a dictionary of character:values
+from stats import sort_characters #Takes a dictionary of character:values and converts it into a sorted list of dictionaries containing character and value
 
-source = "books/frankenstein.txt"
+import sys
+
+if len(sys.argv) != 2:
+    print ("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+source = sys.argv[1]
 
 #Entry function, runs get_book_text, calls necessary processing, and prints results.
 def main():
@@ -19,11 +25,15 @@ def get_book_text(file_path): #Takes a file path as input...
         content = f.read() #Returns the contents as a string.
         return (content)
 
-def print_report(content,num_words,char_sort):
-    ##Fancy formatting goes here.
-    print("Anyone home?")
+def print_report(source,num_words,char_sort):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {source}...")
+    print("----------- Word Count ----------")
+    print(f"Found {num_words} total words")
+    print("--------- Character Count -------")
     for char in char_sort:
         if not char["Character"].isalpha(): continue
         print (f"{char["Character"]}: {char["Num"]}")
+    print("============= END ===============")
 
 main()
